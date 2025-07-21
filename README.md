@@ -51,21 +51,24 @@ docker compose up --build
 
 🧠 Future Improvements
 
-. Add Grafana for monitoring
+- **Add Grafana for monitoring**
 
-. Add Swagger UI for APIs
+- **Add Swagger UI for APIs**
 
-. Secure Kafka and DB connections
+- **Secure Kafka and DB connections**
 
-. Add health check endpoints
+- **Add health check endpoints**
 
 ---
 
 👤 Author
 
 Karan Taragi
+
 DevOps & Java Enthusiast
+
 📧 ksingh064002@gmail.com
+
 📍 Uttarakhand, India
 
 
