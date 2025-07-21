@@ -6,15 +6,16 @@
 
 ## 📁 Project Structure
 
+```text
 SenseFlow/
-├── docker-compose.yml # Orchestrates Kafka, Zookeeper, PostgreSQL, and microservices
-├── sensor-simulator/ # Kafka Producer Microservice
-│ ├── Dockerfile
-│ └── src/...
-└── sensor-data-consumer/ # Kafka Consumer Microservice
-├── Dockerfile
-└── src/...
-
+├── docker-compose.yml         # Orchestrates Kafka, Zookeeper, PostgreSQL, and microservices
+├── sensor-simulator/          # Kafka Producer Microservice
+│   ├── Dockerfile
+│   └── src/...
+└── sensor-data-consumer/      # Kafka Consumer Microservice
+    ├── Dockerfile
+    └── src/...
+```
 
 ---
 
@@ -42,7 +43,9 @@ mvn clean package -DskipTests
 
 ### 2. Run the Docker Containers
 Go to the root SenseFlow/ directory:
+```bash
 docker compose up --build
+```
 
 ---
 
