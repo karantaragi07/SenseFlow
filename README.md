@@ -1,32 +1,131 @@
-# SenseFlow
+📡 SenseFlow
+SenseFlow is a real-time sensor data streaming application built using Spring Boot, Kafka, PostgreSQL, and Docker. It simulates sensor data, produces it to Kafka, and consumes + stores it into a PostgreSQL database.
 
-## Overview
-A backend system to track and monitor internal system flows using Spring Boot. Simulates flow logging, status tracking, and error reporting across services.
+🧱 Project Structure
+SenseFlow/
+├── docker-compose.yml
+├── sensor-simulator/          # Microservice 1: Simulates and produces sensor data to Kafka
+│   ├── Dockerfile
+│   ├── src/
+│   └── pom.xml
+└── sensor-data-consumer/      # Microservice 2: Consumes Kafka messages and stores them in PostgreSQL
+    ├── Dockerfile
+    ├── src/
+    └── pom.xml
 
-## Tech Stack
-- Java 17
-- Spring Boot
-- PostgreSQL / IBM Db2
-- Kafka
-- Swagger UI
+🚀 Features
+. Sensor data simulator producing to Kafka
 
-## Modules
-- Controller Layer: REST APIs for flow status and reports
-- Service Layer: Business logic for flow tracking
-- Repository Layer: JPA Repositories for DB access
-- Model Layer: Entity models for flow data
+. Kafka consumer saving data to PostgreSQL
 
-## Setup
-1. Clone the repo
-2. Configure DB in `application.properties`
-3. Run with `mvn spring-boot:run`
+. Dockerized microservices + Kafka + Zookeeper + Postgres
 
-## Progress
-- [x] Repo setup
-- [ ] Base APIs for flow ingestion
-- [ ] DB integration with JPA
-- [ ] Add Kafka producer/consumer (optional)
-- [ ] Add Swagger documentation
+. Built using Spring Boot & Maven
 
-## Author
-Karan Taragi
+🔧 Tech Stack
+
+. Java 21
+
+. Spring Boot 3.x
+
+. Apache Kafka
+
+. PostgreSQL
+
+. Docker & Docker Compose
+
+. Maven
+
+🛠️ Setup Instructions
+
+1. ✅ Prerequisites
+Ensure the following are installed:
+
+. Docker Desktop
+
+. Maven
+
+. Java 21
+
+2. 📦 Build Both Microservices
+Open terminal in each microservice directory (sensor-simulator and sensor-data-consumer) and run:
+
+. mvn clean package -DskipTests
+
+3. 🐳 Run the Application
+   Go to the root SenseFlow/ folder and run:
+
+.  docker-compose up --build
+
+
+⚙️ Services Overview
+🧪 sensor-simulator
+Sends dummy JSON sensor data to Kafka topic sensor-data
+
+Configured via application.yml
+
+📥 sensor-data-consumer
+Listens to sensor-data topic
+
+Saves incoming messages into PostgreSQL
+
+📝 Environment Configuration
+
+Kafka (via Docker Compose)
+
+  kafka:
+    image: bitnami/kafka:latest
+    environment:
+      KAFKA_CFG_NODE_ID: 1
+      KAFKA_CFG_PROCESS_ROLES: broker
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CFG_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+
+PostgreSQL (via Docker Compose)
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: sensor_db
+
+🔐 Default Credentials
+
+Service	Username	Password
+PostgreSQL	user	password
+
+
+🧪 Sample Sensor Payload
+
+{
+  "sensorId": "sensor-123",
+  "temperature": 27.3,
+  "humidity": 55.1,
+  "timestamp": "2025-07-21T10:00:00Z"
+}
+
+
+  🧹 Cleanup
+  
+To stop everything and remove containers:
+  docker-compose down
+
+To remove all unused Docker images and volumes:
+  docker system prune -a --volumes
+
+
+
+  
+
+
+
+
+
+
+
+
+
