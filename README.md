@@ -65,8 +65,6 @@ docker compose up --build
 
 Karan Taragi
 
-DevOps & Java Enthusiast
-
 📧 ksingh064002@gmail.com
 
 📍 Uttarakhand, India
